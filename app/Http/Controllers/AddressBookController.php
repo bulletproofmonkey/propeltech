@@ -7,8 +7,8 @@ use App\Models\Address;
 use App\Repository\AddressRepository;
 use App\Repository\Exceptions\NotFoundException;
 use Exception;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AddressBookController extends Controller
@@ -27,10 +27,10 @@ class AddressBookController extends Controller
     }
 
     /**
-     * @param FormRequest $request
+     * @param Request $request
      * @return View
      */
-    public function index(FormRequest $request): View
+    public function index(Request $request): View
     {
         return view('index', [
             'title'     => '',

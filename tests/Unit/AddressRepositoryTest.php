@@ -21,7 +21,7 @@ class AddressRepositoryTest extends TestCase
 
         // Recreate data file
         file_put_contents(
-            resource_path('test' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'address.json'),
+            storage_path('address.json'),
             '[
     {
         "first_name": "Ken",
@@ -38,7 +38,7 @@ class AddressRepositoryTest extends TestCase
 ]'
         );
 
-        $this->repository = new AddressRepository(resource_path('test' . DIRECTORY_SEPARATOR . 'data'));
+        $this->repository = new AddressRepository(storage_path());
     }
 
     /**
@@ -117,6 +117,7 @@ class AddressRepositoryTest extends TestCase
     {
         $address =
             (new Address())
+                ->setId(2)
                 ->setFirstName('Steve')
                 ->setLastName('McDonald')
                 ->setEmail('steve.mcdonald@corrie.co.uk')

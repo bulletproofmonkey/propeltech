@@ -46,7 +46,7 @@ abstract class JsonRespository
     public function get(int $id): JsonSerializable
     {
         if (isset($this->data[$id])) {
-            return $this->data[$id];
+            return ($this->data[$id])->setId($id);
         }
 
         throw new NotFoundException($this->getClass(), $id);

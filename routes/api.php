@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AddressBookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/', [AddressBookController::class, 'getAll']);
+Route::get('/{id}', [AddressBookController::class, 'get']);
+Route::post('/', [AddressBookController::class, 'create']);
+Route::patch('/{id}', [AddressBookController::class, 'update']);
+Route::delete('/{id}', [AddressBookController::class, 'delete']);
