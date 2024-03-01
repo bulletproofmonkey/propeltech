@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressBookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AddressBookController::class, 'index']);
+Route::get('/create', [AddressBookController::class, 'create']);
+Route::get('/{id}', [AddressBookController::class, 'show']);
+Route::get('/{id}/edit', [AddressBookController::class, 'edit']);
+Route::get('/{id}/delete', [AddressBookController::class, 'delete']);
+
+Route::post('/create', [AddressBookController::class, 'store']);
+Route::post('/{id}/edit', [AddressBookController::class, 'store']);
