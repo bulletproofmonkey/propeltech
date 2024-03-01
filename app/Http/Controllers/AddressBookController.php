@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Repository\AddressRepository;
 use App\Repository\Exceptions\NotFoundException;
 use Exception;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -26,13 +27,15 @@ class AddressBookController extends Controller
     }
 
     /**
+     * @param FormRequest $request
      * @return View
      */
-    public function index(): View
+    public function index(FormRequest $request): View
     {
         return view('index', [
             'title'     => '',
-            'addresses' => $this->addressRepository->getAll(),
+            'search'    => $request->get('search'),
+            'addresses' => $this->addressRepository->getAll($request->get('search')),
         ]);
     }
 

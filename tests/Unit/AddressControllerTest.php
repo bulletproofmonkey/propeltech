@@ -85,7 +85,7 @@ class AddressControllerTest extends TestCase
                                ->setFirstName('Ken')
                                ->setLastName('Barlow')
                                ->setEmail('ken.barlow@corrie.co.uk')
-                               ->setPhone('019134784929')
+                               ->setPhone('01913478492')
                        );
 
         $this->instance(AddressRepository::class, $mockRepository);
@@ -94,7 +94,7 @@ class AddressControllerTest extends TestCase
             'first_name' => 'Ken',
             'last_name'  => 'Barlow',
             'email'      => 'ken.barlow@corrie.co.uk',
-            'phone'      => '019134784929',
+            'phone'      => '01913478492',
         ]);
         $response->assertStatus(302);
     }
@@ -113,7 +113,7 @@ class AddressControllerTest extends TestCase
                                ->setFirstName('Ken')
                                ->setLastName('Barlow')
                                ->setEmail('ken.barlow@corrie.co.uk')
-                               ->setPhone('019134784929'),
+                               ->setPhone('01913478492'),
                            1
                        );
 
@@ -123,9 +123,28 @@ class AddressControllerTest extends TestCase
             'first_name' => 'Ken',
             'last_name'  => 'Barlow',
             'email'      => 'ken.barlow@corrie.co.uk',
-            'phone'      => '019134784929',
+            'phone'      => '01913478492',
         ]);
         $response->assertStatus(302);
+    }
+
+    /**
+     * @return void
+     * @throws Exception
+     */
+    public function testEditStoreFailure(): void
+    {
+        $mockRepository = $this->createPartialMock(AddressRepository::class, []);
+
+        $this->instance(AddressRepository::class, $mockRepository);
+
+        $response = $this->post('/1/edit', [
+            'first_name' => 'Ken',
+            'last_name'  => 'Barlow',
+            'email'      => 'ken.barlow@corrie.co.uk',
+            'phone'      => '019134784929',
+        ]);
+        $response->assertInvalid();
     }
 
     /**

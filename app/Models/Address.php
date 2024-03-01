@@ -163,4 +163,16 @@ class Address implements Arrayable, JsonSerializable
     {
         return $this->toArray();
     }
+
+    /**
+     * @param string|null $string
+     * @return bool
+     */
+    public function contains(?string $string): bool
+    {
+        return stristr($this->firstName, $string) ||
+               stristr($this->lastName, $string) ||
+               stristr($this->phone, $string) ||
+               stristr($this->email, $string);
+    }
 }

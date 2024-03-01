@@ -53,10 +53,16 @@ abstract class JsonRespository
     }
 
     /**
-     * @return array|JsonSerializable[]
+     * @param string|null $search
+     * @return array
      */
-    public function getAll(): array
+    public function getAll(?string $search = null): array
     {
+        if ($search) {
+            return array_values(
+                array_filter($this->data, fn($entity) => $entity->contains($search))
+            );
+        }
         return $this->data;
     }
 

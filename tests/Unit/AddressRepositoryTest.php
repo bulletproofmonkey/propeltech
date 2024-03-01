@@ -93,6 +93,23 @@ class AddressRepositoryTest extends TestCase
 
     /**
      * @return void
+     */
+    public function testGetFiltered(): void
+    {
+        $expected = [
+            (new Address())
+                ->setId(1)
+                ->setFirstName('Rita')
+                ->setLastName('Sullivan')
+                ->setEmail('rita.sullivan@corrie.co.uk')
+                ->setPhone('01913478555'),
+        ];
+
+        $this->assertEquals($expected, $this->repository->getAll('it'));
+    }
+
+    /**
+     * @return void
      * @throws NotFoundException
      * @throws MismatchedEntityException
      */

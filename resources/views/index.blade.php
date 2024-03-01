@@ -3,9 +3,17 @@
 @section('content')
     <div>
         @if(count($addresses) === 0)
-            There are no addresses, click
-            <a class="btn btn-success" href="/create">Add</a> to create one.
+            @if (!empty($search))
+                There are no matching addresses for <b>{{ $search }}</b> <a class="btn btn-success" href="/">Clear Filter</a>
+            @else
+                There are no addresses, click
+               <a class="btn btn-success" href="/create">Add</a> to create one.
+            @endif
         @else
+            <form>
+                <input type="search" name="search" placeholder="Search..." value="{{ $search }}">
+                <input type="submit" class="btn btn-info" value="Search"/>
+            </form>
             <table class="w-100">
                 <thead>
                 <tr>
