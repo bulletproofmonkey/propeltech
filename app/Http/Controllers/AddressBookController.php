@@ -26,6 +26,14 @@ class AddressBookController extends Controller
         $this->addressRepository = $addressRepository;
     }
 
+    public function spa(): View
+    {
+        return view('spa', [
+            'type'  => 'spa',
+            'title' => '',
+        ]);
+    }
+
     /**
      * @param Request $request
      * @return View

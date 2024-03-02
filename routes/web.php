@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/spa', [AddressBookController::class, 'spa']);
+
 Route::get('/', [AddressBookController::class, 'index']);
 Route::get('/create', [AddressBookController::class, 'create']);
 Route::get('/{id}', [AddressBookController::class, 'show']);
